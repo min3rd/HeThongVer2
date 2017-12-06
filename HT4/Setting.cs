@@ -59,7 +59,14 @@ namespace HT4
                     txtPassword.Text = lines[3];
                 }else
                 {
-                    File.Create(path);
+                    FileStream fs = File.Create(path);
+                    StreamWriter wr = new StreamWriter(fs, Encoding.UTF8);
+                    wr.WriteLine("Địa chỉ máy chủ");
+                    wr.WriteLine("Tên cở sở dữ liệu");
+                    wr.WriteLine("Tài khoản");
+                    wr.WriteLine("Mật khẩu");
+                    wr.Flush();
+                    fs.Close();
                 }
             }catch(Exception ex)
             {
