@@ -537,6 +537,7 @@
             this.btnSuaNganh.TabIndex = 10;
             this.btnSuaNganh.Text = "Sửa";
             this.btnSuaNganh.UseVisualStyleBackColor = false;
+            this.btnSuaNganh.Click += new System.EventHandler(this.btnSuaNganh_Click);
             // 
             // btnMoNganh
             // 
@@ -572,6 +573,7 @@
             this.btnCapNhatNganh.TabIndex = 7;
             this.btnCapNhatNganh.Text = "Cập nhật";
             this.btnCapNhatNganh.UseVisualStyleBackColor = false;
+            this.btnCapNhatNganh.Click += new System.EventHandler(this.btnCapNhatNganh_Click);
             // 
             // btnThemNganh
             // 
@@ -583,6 +585,7 @@
             this.btnThemNganh.TabIndex = 6;
             this.btnThemNganh.Text = "Thêm";
             this.btnThemNganh.UseVisualStyleBackColor = false;
+            this.btnThemNganh.Click += new System.EventHandler(this.btnThemNganh_Click);
             // 
             // txtYNghia
             // 

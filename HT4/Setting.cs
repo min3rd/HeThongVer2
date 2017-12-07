@@ -67,6 +67,11 @@ namespace HT4
                     wr.WriteLine("Mật khẩu");
                     wr.Flush();
                     fs.Close();
+                    string[] lines = System.IO.File.ReadAllLines(path);
+                    txtServer.Text = lines[0];
+                    txtDataName.Text = lines[1];
+                    txtUser.Text = lines[2];
+                    txtPassword.Text = lines[3];
                 }
             }catch(Exception ex)
             {

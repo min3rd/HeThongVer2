@@ -17,6 +17,7 @@ namespace HT4
     {
         DbConnection db;
         SinhVien currentSV;
+        Nganh currentNganh;
         public DataCenter()
         {
             if (db == null)
@@ -124,9 +125,9 @@ namespace HT4
 
                 conn.Close();
             }
-            catch
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -187,7 +188,7 @@ namespace HT4
                     conn.Close();
                     MessageBox.Show("Đã xóa thành công");
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
@@ -210,7 +211,10 @@ namespace HT4
 
         private void btnLamLaiNganh_Click(object sender, EventArgs e)
         {
-
+            txtMaNganh.Text = "";
+            txtTenNganh.Text = "";
+            txtYNghia.Text = "";
+            currentNganh = null;
         }
 
         private void btnMoNganh_Click(object sender, EventArgs e)
@@ -313,9 +317,9 @@ namespace HT4
                     conn.Close();
                     FillDataToEdit(currentSV);
                 }
-                catch
+                catch (Exception ex)
                 {
-
+                    MessageBox.Show(ex.ToString());
                 }
 
             }
@@ -370,7 +374,106 @@ namespace HT4
 
         private void btnXoaNganh_Click(object sender, EventArgs e)
         {
+            string ma = dataGridView2.Rows[dataGridView2.SelectedRows[0].Index].Cells[0].Value.ToString();
+            string s3 = "DELETE FROM [HT4].[dbo].[Nganh] WHERE ma_Nganh='" + ma + "'";
+            SqlConnection conn = db.GetConnection();
+            try
+            {
+                conn.Open();
+                SqlCommand sql = new SqlCommand(s3, conn);
+                sql.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Đã xóa thành công đối tượng có mã: " + ma);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
+        private void btnThemNganh_Click(object sender, EventArgs e)
+        {
+            if (txtMaNganh.Text.Equals("") || txtTenNganh.Text.Equals("") || txtYNghia.Text.Equals(""))
+            {
+                MessageBox.Show("Bạn vui lòng điền đầy đủ thông tin");
+            }
+            else
+            {
+                try
+                {
+                    string s2 = "INSERT INTO [HT4].[dbo].[Nganh] ([ma_Nganh] ,[ten_Nganh] ,[y_Nghia]) VALUES('" + txtMaNganh.Text + "','" + txtTenNganh.Text + "','" + txtYNghia.Text + "')";
+                    SqlConnection conn = db.GetConnection();
+                    conn.Open();
+                    SqlCommand sql = new SqlCommand(s2, conn);
+                    sql.ExecuteNonQuery();
+                    conn.Close();
+                    MessageBox.Show("Thêm dữ liệu thành công");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
+
+        private void btnSuaNganh_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count < 0)
+            {
+                MessageBox.Show("Bạn cần chọn một dữ liệu để thực thi");
+            }
+            else
+            {
+                currentNganh = new Nganh();
+                string ma = dataGridView2.Rows[dataGridView2.SelectedRows[0].Index].Cells[0].Value.ToString();
+
+                try
+                {
+                    SqlConnection conn = db.GetConnection();
+                    conn.Open(); ;
+                    SqlCommand sql = new SqlCommand("SELECT [ma_Nganh],[ten_Nganh] ,[y_Nghia] FROM [HT4].[dbo].[Nganh] WHERE ma_Nganh='" + ma + "'", conn);
+                    using (SqlDataReader r2 = sql.ExecuteReader())
+                    {
+                        while (r2.Read())
+                        {
+                            currentNganh.ma = r2["ma_nganh"].ToString();
+                            currentNganh.ten = r2["ten_Nganh"].ToString();
+                            currentNganh.ynghia = r2["y_Nghia"].ToString();
+                        }
+                    }
+                    conn.Close();
+                    txtMaNganh.Text = currentNganh.ma;
+                    txtTenNganh.Text = currentNganh.ten;
+                    txtYNghia.Text = currentNganh.ynghia;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
+
+        private void btnCapNhatNganh_Click(object sender, EventArgs e)
+        {
+            if(currentNganh == null)
+            {
+                MessageBox.Show("Bạn chưa chọn sửa bất kỳ đối tượng nào");
+            }else
+            {
+                SqlConnection conn = db.GetConnection();
+                try
+                {
+                    conn.Open();
+                    SqlCommand sql = new SqlCommand("UPDATE [HT4].[dbo].[Nganh]SET [ma_Nganh] = '"+txtMaNganh.Text+"' ,[ten_Nganh] = '"+txtTenNganh.Text+"' ,[y_Nghia] = '"+txtYNghia.Text+"'WHERE ma_Nganh='"+currentNganh.ma+"'", conn);
+                    sql.ExecuteNonQuery();
+                    conn.Close();
+                    MessageBox.Show("Chỉnh sửa thành công");
+                    currentNganh = null;
+                }catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
     }
 }
