@@ -38,7 +38,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnActionTuVan = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDiem = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbTinh = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -148,7 +148,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.btnHuy);
             this.panel1.Controls.Add(this.btnActionTuVan);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtDiem);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.cbTinh);
             this.panel1.Controls.Add(this.label5);
@@ -187,14 +187,15 @@
             this.btnActionTuVan.TabIndex = 11;
             this.btnActionTuVan.Text = "Tư vấn";
             this.btnActionTuVan.UseVisualStyleBackColor = false;
+            this.btnActionTuVan.Click += new System.EventHandler(this.btnActionTuVan_Click);
             // 
-            // textBox1
+            // txtDiem
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(108, 258);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 30);
-            this.textBox1.TabIndex = 10;
+            this.txtDiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiem.Location = new System.Drawing.Point(108, 258);
+            this.txtDiem.Name = "txtDiem";
+            this.txtDiem.Size = new System.Drawing.Size(220, 30);
+            this.txtDiem.TabIndex = 10;
             // 
             // label6
             // 
@@ -326,7 +327,7 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDiem;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbTinh;
         private System.Windows.Forms.Label label5;

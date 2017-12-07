@@ -475,5 +475,12 @@ namespace HT4
                 }
             }
         }
+
+        private void btnCaiDat_Click(object sender, EventArgs e)
+        {
+            Setting s = new Setting();
+            s.Show();
+            this.Hide();
+        }
     }
 }

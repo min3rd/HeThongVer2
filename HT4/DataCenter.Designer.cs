@@ -159,6 +159,7 @@
             this.btnCaiDat.TabIndex = 2;
             this.btnCaiDat.Text = "Cài đặt";
             this.btnCaiDat.UseVisualStyleBackColor = false;
+            this.btnCaiDat.Click += new System.EventHandler(this.btnCaiDat_Click);
             // 
             // btnThoat
             // 

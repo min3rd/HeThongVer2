@@ -114,5 +114,12 @@ namespace HT4
             fs.Close();
             MessageBox.Show("Đã lưu chỉnh sửu");
         }
+
+        private void btnTuVan_Click(object sender, EventArgs e)
+        {
+            TuVan t = new TuVan();
+            t.Show();
+            this.Hide();
+        }
     }
 }

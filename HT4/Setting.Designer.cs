@@ -76,6 +76,7 @@
             this.btnTuVan.TabIndex = 0;
             this.btnTuVan.Text = "Tư vấn";
             this.btnTuVan.UseVisualStyleBackColor = false;
+            this.btnTuVan.Click += new System.EventHandler(this.btnTuVan_Click);
             // 
             // btnGoiY
             // 

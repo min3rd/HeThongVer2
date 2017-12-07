@@ -1,7 +1,9 @@
-﻿using System;
+﻿using HT4.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,8 +14,23 @@ namespace HT4
 {
     public partial class TuVan : Form
     {
+        List<SinhVien> svs;
+        DbConnection db;
+        List<ThamSo> ts;
         public TuVan()
         {
+            if (svs == null)
+            {
+                svs = new List<SinhVien>();
+            }
+            if (db == null)
+            {
+                db = new DbConnection();
+            }
+            if (ts == null)
+            {
+                ts = new List<ThamSo>();
+            }
             InitializeComponent();
         }
 
@@ -40,6 +57,41 @@ namespace HT4
             btnHuy.TabStop = false;
             btnHuy.FlatStyle = FlatStyle.Flat;
             btnHuy.FlatAppearance.BorderSize = 0;
+
+            SqlConnection conn = db.GetConnection();
+            try
+            {
+                conn.Open();
+
+                SqlCommand sql = new SqlCommand("SELECT * FROM SinhVien", conn);
+                using (SqlDataReader reader = sql.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        SinhVien sv = new SinhVien();
+                        sv.id = int.Parse(reader["id"].ToString());
+                        sv.ten = reader["ten_Sinh_Vien"].ToString();
+                        sv.tuoi = int.Parse(reader["tuoi"].ToString());
+                        sv.gioitinh = int.Parse(reader["gioi_Tinh"].ToString());
+                        sv.diem = float.Parse(reader["diem_Thi"].ToString());
+                        sv.tinh = int.Parse(reader["tinh"].ToString());
+                        sv.nganhhoc = reader["nganh_Hoc"].ToString();
+                        svs.Add(sv);
+                    }
+                }
+                //combobox noi o
+                SqlDataAdapter ap3 = new SqlDataAdapter("SELECT * FROM Tinh", conn);
+                DataTable dt3 = new DataTable();
+                ap3.Fill(dt3);
+                cbTinh.DataSource = dt3;
+                cbTinh.DisplayMember = "ten_Tinh";
+                cbTinh.ValueMember = "ma_Tinh";
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
@@ -47,6 +99,95 @@ namespace HT4
             MainMenu m = new MainMenu();
             m.Show();
             this.Hide();
+        }
+
+        private void btnActionTuVan_Click(object sender, EventArgs e)
+        {
+            if (txtName.Text.Equals("") || txtDiem.Text.Equals("") || txtDiem.Text.Equals("")||cbGioiTinh.SelectedIndex<0)
+            {
+                MessageBox.Show("Bạn cần điền đầy đủ thông tin");
+            }else
+            {
+                SinhVien sv = new SinhVien();
+                sv.id = -1;
+                sv.tuoi = int.Parse(txtTuoi.Text);
+                sv.gioitinh = cbGioiTinh.SelectedIndex;
+                sv.diem = float.Parse(txtDiem.Text);
+                sv.tinh = int.Parse(cbTinh.SelectedValue.ToString());
+                sv.nganhhoc = "";
+                string s = findNganh(sv);
+                Nganh result = new Nganh();
+                SqlConnection conn = db.GetConnection();
+                try
+                {
+                    conn.Open();
+
+                    SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM Nganh WHERE ma_Nganh='" + s + "'", conn);
+                    DataTable dt = new DataTable();
+                    sql.Fill(dt);
+                    Result r = new Result(dt);
+                    r.Show();
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
+        }
+        private string findNganh(SinhVien sv)
+        {
+            List<string> nganhUnique = new List<string>();
+            foreach (SinhVien s in svs)
+            {
+                if (nganhUnique.Contains(s.nganhhoc))
+                {
+
+                }
+                else
+                {
+                    nganhUnique.Add(s.nganhhoc);
+                }
+            }
+            foreach (string s in nganhUnique)
+            {
+                ThamSo t = new ThamSo();
+                t.ma = s;
+                foreach (SinhVien ssv in svs)
+                {
+                    if (ssv.nganhhoc.Equals(s))
+                    {
+                        t.list.Add(ssv);
+                    }
+                }
+                ts.Add(t);
+            }
+            foreach(ThamSo t in ts)
+            {
+                foreach(SinhVien svt in t.list)
+                {
+                    t.avgTuoi += svt.tuoi;
+                    t.avgGioiTinh += svt.gioitinh;
+                    t.avgDiem += svt.diem;
+                    t.avgTinh += svt.tinh;
+                }
+                t.avgTuoi /= t.list.Count;
+                t.avgGioiTinh /= t.list.Count;
+                t.avgDiem /= t.list.Count;
+                t.avgTinh /= t.list.Count;
+            }
+            float saiso = 100;
+            string result="";
+            foreach(ThamSo t in ts)
+            {
+                float ss = (Math.Abs(t.avgTuoi - sv.tuoi) + Math.Abs(t.avgGioiTinh - sv.gioitinh) + Math.Abs(t.avgDiem - sv.diem) + Math.Abs(t.avgTinh - sv.tinh)) / 4;
+                if (ss < saiso)
+                {
+                    saiso = ss;
+                    result = t.ma;
+                }
+            }
+            return result;
         }
     }
 }
