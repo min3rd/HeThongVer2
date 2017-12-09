@@ -79,7 +79,7 @@
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.listSV);
             this.Name = "ImportDataFromExel";
-            this.Text = "ImportDataFromExel";
+            this.Text = "Xem dữ liệu";
             this.Load += new System.EventHandler(this.ImportDataFromExel_Load);
             this.ResumeLayout(false);
 

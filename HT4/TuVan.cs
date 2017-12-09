@@ -57,6 +57,9 @@ namespace HT4
             btnHuy.TabStop = false;
             btnHuy.FlatStyle = FlatStyle.Flat;
             btnHuy.FlatAppearance.BorderSize = 0;
+            btnTuVan2.TabStop = false;
+            btnTuVan2.FlatStyle = FlatStyle.Flat;
+            btnTuVan2.FlatAppearance.BorderSize = 0;
 
             SqlConnection conn = db.GetConnection();
             try
@@ -103,10 +106,11 @@ namespace HT4
 
         private void btnActionTuVan_Click(object sender, EventArgs e)
         {
-            if (txtName.Text.Equals("") || txtDiem.Text.Equals("") || txtDiem.Text.Equals("")||cbGioiTinh.SelectedIndex<0)
+            if (txtName.Text.Equals("") || txtDiem.Text.Equals("") || txtDiem.Text.Equals("") || cbGioiTinh.SelectedIndex < 0)
             {
                 MessageBox.Show("Bạn cần điền đầy đủ thông tin");
-            }else
+            }
+            else
             {
                 SinhVien sv = new SinhVien();
                 sv.id = -1;
@@ -116,22 +120,14 @@ namespace HT4
                 sv.tinh = int.Parse(cbTinh.SelectedValue.ToString());
                 sv.nganhhoc = "";
                 string s = findNganh(sv);
-                Nganh result = new Nganh();
-                SqlConnection conn = db.GetConnection();
-                try
+                if (s.Equals(""))
                 {
-                    conn.Open();
-
-                    SqlDataAdapter sql = new SqlDataAdapter("SELECT * FROM Nganh WHERE ma_Nganh='" + s + "'", conn);
-                    DataTable dt = new DataTable();
-                    sql.Fill(dt);
-                    Result r = new Result(dt);
-                    r.Show();
-                    conn.Close();
+                    MessageBox.Show("Không có kết quả phù hợp");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.ToString());
+                    Result r = new Result(s);
+                    r.Show();
                 }
             }
         }
@@ -162,9 +158,9 @@ namespace HT4
                 }
                 ts.Add(t);
             }
-            foreach(ThamSo t in ts)
+            foreach (ThamSo t in ts)
             {
-                foreach(SinhVien svt in t.list)
+                foreach (SinhVien svt in t.list)
                 {
                     t.avgTuoi += svt.tuoi;
                     t.avgGioiTinh += svt.gioitinh;
@@ -177,8 +173,8 @@ namespace HT4
                 t.avgTinh /= t.list.Count;
             }
             float saiso = 100;
-            string result="";
-            foreach(ThamSo t in ts)
+            string result = "";
+            foreach (ThamSo t in ts)
             {
                 float ss = (Math.Abs(t.avgTuoi - sv.tuoi) + Math.Abs(t.avgGioiTinh - sv.gioitinh) + Math.Abs(t.avgDiem - sv.diem) + Math.Abs(t.avgTinh - sv.tinh)) / 4;
                 if (ss < saiso)
@@ -188,6 +184,72 @@ namespace HT4
                 }
             }
             return result;
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            txtName.Text = "";
+            txtDiem.Text = "";
+            txtTuoi.Text = "";
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txtName.Text.Equals("") || txtDiem.Text.Equals("") || txtDiem.Text.Equals("") || cbGioiTinh.SelectedIndex < 0)
+            {
+                MessageBox.Show("Bạn cần điền đầy đủ thông tin");
+            }
+            else
+            {
+                SinhVien sv = new SinhVien();
+                sv.id = -1;
+                sv.tuoi = int.Parse(txtTuoi.Text);
+                sv.gioitinh = cbGioiTinh.SelectedIndex;
+                sv.diem = float.Parse(txtDiem.Text);
+                sv.tinh = int.Parse(cbTinh.SelectedValue.ToString());
+                sv.nganhhoc = "";
+                List<SinhVien> cq = new List<SinhVien>();
+                List<string> uniqueNganh = new List<string>();
+                foreach (SinhVien v in svs)
+                {
+                    if (v.tinh >= sv.tinh - 10 && v.tinh <= sv.tinh + 10)
+                    {
+                        cq.Add(v);
+                        if (uniqueNganh.Contains(v.nganhhoc))
+                        {
+                        }
+                        else
+                        {
+                            uniqueNganh.Add(v.nganhhoc);
+                        }
+                    }
+                }
+                int[] tanso = new int[uniqueNganh.Count];
+                foreach (SinhVien v in cq)
+                {
+                    tanso[uniqueNganh.IndexOf(v.nganhhoc)]++;
+                }
+                int max = tanso.Max();
+                string re = "";
+                for (int i = 0; i < tanso.Length; i++)
+                {
+                    if (tanso[i] == max)
+                    {
+                        re = uniqueNganh[i];
+                    }
+                }
+                if (re.Equals(""))
+                {
+                    MessageBox.Show("Không có kết quả tư vấn");
+                }
+                else
+                {
+                    Result r = new Result(re);
+                    r.Show();
+                }
+                
+            }
         }
     }
 }

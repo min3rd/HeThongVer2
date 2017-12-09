@@ -46,6 +46,7 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDataName = new System.Windows.Forms.TextBox();
+            this.btnThem = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -202,7 +203,7 @@
             // 
             this.btnLuu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(100)))));
             this.btnLuu.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnLuu.Location = new System.Drawing.Point(697, 230);
+            this.btnLuu.Location = new System.Drawing.Point(613, 229);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(75, 23);
             this.btnLuu.TabIndex = 10;
@@ -214,12 +215,13 @@
             // 
             this.btnHuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnHuy.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnHuy.Location = new System.Drawing.Point(616, 230);
+            this.btnHuy.Location = new System.Drawing.Point(532, 229);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(75, 23);
             this.btnHuy.TabIndex = 11;
             this.btnHuy.Text = "Hủy bỏ";
             this.btnHuy.UseVisualStyleBackColor = false;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // label5
             // 
@@ -237,11 +239,24 @@
             this.txtDataName.Size = new System.Drawing.Size(413, 20);
             this.txtDataName.TabIndex = 13;
             // 
+            // btnThem
+            // 
+            this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(100)))));
+            this.btnThem.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnThem.Location = new System.Drawing.Point(694, 229);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(75, 23);
+            this.btnThem.TabIndex = 14;
+            this.btnThem.Text = "Thêm";
+            this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btnThem);
             this.Controls.Add(this.txtDataName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnHuy);
@@ -255,7 +270,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Setting";
-            this.Text = "Setting";
+            this.Text = "Cài đặt";
             this.Load += new System.EventHandler(this.Setting_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -282,5 +297,6 @@
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDataName;
+        private System.Windows.Forms.Button btnThem;
     }
 }

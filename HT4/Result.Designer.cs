@@ -42,7 +42,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(1, 1);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(283, 203);
+            this.dataGridView1.Size = new System.Drawing.Size(470, 218);
             this.dataGridView1.TabIndex = 0;
             // 
             // btn
@@ -52,9 +52,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(100)))));
             this.btn.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn.Location = new System.Drawing.Point(209, 226);
+            this.btn.Location = new System.Drawing.Point(370, 226);
             this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(75, 23);
+            this.btn.Size = new System.Drawing.Size(101, 38);
             this.btn.TabIndex = 1;
             this.btn.Text = "Quay lại";
             this.btn.UseVisualStyleBackColor = false;
@@ -64,11 +64,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(471, 276);
             this.Controls.Add(this.btn);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Result";
-            this.Text = "Result";
+            this.Text = "Kết quả";
             this.Load += new System.EventHandler(this.Result_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -144,7 +144,7 @@
             this.Controls.Add(this.btnTuVan);
             this.Controls.Add(this.label1);
             this.Name = "MainMenu";
-            this.Text = "Form1";
+            this.Text = "Trang chủ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -49,6 +49,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnTuVan2 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -146,6 +147,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.btnTuVan2);
             this.panel1.Controls.Add(this.btnHuy);
             this.panel1.Controls.Add(this.btnActionTuVan);
             this.panel1.Controls.Add(this.txtDiem);
@@ -169,23 +171,24 @@
             this.btnHuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnHuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHuy.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnHuy.Location = new System.Drawing.Point(264, 482);
+            this.btnHuy.Location = new System.Drawing.Point(77, 482);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(143, 45);
             this.btnHuy.TabIndex = 12;
             this.btnHuy.Text = "Hủy";
             this.btnHuy.UseVisualStyleBackColor = false;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnActionTuVan
             // 
             this.btnActionTuVan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(100)))));
             this.btnActionTuVan.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActionTuVan.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnActionTuVan.Location = new System.Drawing.Point(413, 482);
+            this.btnActionTuVan.Location = new System.Drawing.Point(241, 482);
             this.btnActionTuVan.Name = "btnActionTuVan";
             this.btnActionTuVan.Size = new System.Drawing.Size(143, 45);
             this.btnActionTuVan.TabIndex = 11;
-            this.btnActionTuVan.Text = "Tư vấn";
+            this.btnActionTuVan.Text = "Tư vấn 1";
             this.btnActionTuVan.UseVisualStyleBackColor = false;
             this.btnActionTuVan.Click += new System.EventHandler(this.btnActionTuVan_Click);
             // 
@@ -297,6 +300,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tư vấn chọn ngành học phù hợp";
             // 
+            // btnTuVan2
+            // 
+            this.btnTuVan2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(96)))), ((int)(((byte)(100)))));
+            this.btnTuVan2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTuVan2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnTuVan2.Location = new System.Drawing.Point(406, 482);
+            this.btnTuVan2.Name = "btnTuVan2";
+            this.btnTuVan2.Size = new System.Drawing.Size(143, 45);
+            this.btnTuVan2.TabIndex = 13;
+            this.btnTuVan2.Text = "Tư vấn 2";
+            this.btnTuVan2.UseVisualStyleBackColor = false;
+            this.btnTuVan2.Click += new System.EventHandler(this.button1_Click);
+            // 
             // TuVan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,7 +322,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "TuVan";
-            this.Text = "TuVan";
+            this.Text = "Tư vấn";
             this.Load += new System.EventHandler(this.TuVan_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -337,5 +353,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnActionTuVan;
+        private System.Windows.Forms.Button btnTuVan2;
     }
 }

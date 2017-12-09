@@ -644,7 +644,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "DataCenter";
-            this.Text = "DataCenter";
+            this.Text = "Quản lý";
             this.Load += new System.EventHandler(this.DataCenter_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

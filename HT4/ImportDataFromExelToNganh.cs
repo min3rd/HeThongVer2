@@ -86,7 +86,6 @@ namespace HT4
                 foreach (ListViewItem item in listSV.Items)
                 {
                     string s = "INSERT INTO [HT4].[dbo].[Nganh]([ma_Nganh],[ten_Nganh],[y_Nghia]) VALUES('"+item.Text + "','"+item.SubItems[1].Text+"','"+item.SubItems[2].Text+"')";
-                    txtTest.Text = s; 
                     SqlCommand sql = new SqlCommand(s, conn);
                     sql.ExecuteNonQuery();
 

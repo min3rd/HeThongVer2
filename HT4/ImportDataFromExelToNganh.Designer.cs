@@ -31,7 +31,6 @@
             this.listSV = new System.Windows.Forms.ListView();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
-            this.txtTest = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listSV
@@ -39,10 +38,10 @@
             this.listSV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listSV.Location = new System.Drawing.Point(-3, 49);
+            this.listSV.Location = new System.Drawing.Point(-3, 0);
             this.listSV.MultiSelect = false;
             this.listSV.Name = "listSV";
-            this.listSV.Size = new System.Drawing.Size(589, 474);
+            this.listSV.Size = new System.Drawing.Size(589, 523);
             this.listSV.TabIndex = 0;
             this.listSV.UseCompatibleStateImageBehavior = false;
             this.listSV.View = System.Windows.Forms.View.Details;
@@ -71,27 +70,18 @@
             this.btnHuy.UseVisualStyleBackColor = false;
             this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
-            // txtTest
-            // 
-            this.txtTest.Location = new System.Drawing.Point(-3, -1);
-            this.txtTest.Name = "txtTest";
-            this.txtTest.Size = new System.Drawing.Size(589, 20);
-            this.txtTest.TabIndex = 3;
-            // 
             // ImportDataFromExelToNganh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 561);
-            this.Controls.Add(this.txtTest);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.listSV);
             this.Name = "ImportDataFromExelToNganh";
-            this.Text = "ImportDataFromExel";
+            this.Text = "Xem dữ liệu";
             this.Load += new System.EventHandler(this.ImportDataFromExel_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -100,6 +90,5 @@
         private System.Windows.Forms.ListView listSV;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnHuy;
-        private System.Windows.Forms.TextBox txtTest;
     }
 }
