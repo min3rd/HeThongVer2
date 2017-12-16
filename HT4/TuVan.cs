@@ -72,13 +72,13 @@ namespace HT4
                     while (reader.Read())
                     {
                         SinhVien sv = new SinhVien();
-                        sv.id = int.Parse(reader["id"].ToString());
+                        sv.id = int.Parse(reader["ma_SV"].ToString());
                         sv.ten = reader["ten_Sinh_Vien"].ToString();
                         sv.tuoi = int.Parse(reader["tuoi"].ToString());
                         sv.gioitinh = int.Parse(reader["gioi_Tinh"].ToString());
                         sv.diem = float.Parse(reader["diem_Thi"].ToString());
-                        sv.tinh = int.Parse(reader["tinh"].ToString());
-                        sv.nganhhoc = reader["nganh_Hoc"].ToString();
+                        sv.tinh = int.Parse(reader["ma_Tinh"].ToString());
+                        sv.nganhhoc = reader["ma_Nganh"].ToString();
                         svs.Add(sv);
                     }
                 }
@@ -225,28 +225,34 @@ namespace HT4
                         }
                     }
                 }
-                int[] tanso = new int[uniqueNganh.Count];
-                foreach (SinhVien v in cq)
+                if (uniqueNganh.Count >= 0)
                 {
-                    tanso[uniqueNganh.IndexOf(v.nganhhoc)]++;
-                }
-                int max = tanso.Max();
-                string re = "";
-                for (int i = 0; i < tanso.Length; i++)
-                {
-                    if (tanso[i] == max)
+                    int[] tanso = new int[uniqueNganh.Count];
+                    foreach (SinhVien v in cq)
                     {
-                        re = uniqueNganh[i];
+                        tanso[uniqueNganh.IndexOf(v.nganhhoc)]++;
                     }
-                }
-                if (re.Equals(""))
+                    int max = tanso.Max();
+                    string re = "";
+                    for (int i = 0; i < tanso.Length; i++)
+                    {
+                        if (tanso[i] >= max)
+                        {
+                            re = uniqueNganh[i];
+                        }
+                    }
+                    if (re.Equals(""))
+                    {
+                        MessageBox.Show("Không có kết quả tư vấn");
+                    }
+                    else
+                    {
+                        Result r = new Result(re);
+                        r.Show();
+                    }
+                }else
                 {
-                    MessageBox.Show("Không có kết quả tư vấn");
-                }
-                else
-                {
-                    Result r = new Result(re);
-                    r.Show();
+                    MessageBox.Show("Không có kết quả phù hợp");
                 }
                 
             }

@@ -85,7 +85,7 @@ namespace HT4
                 conn.Open();
                 foreach (ListViewItem item in listSV.Items)
                 {
-                    string s = "INSERT INTO [HT4].[dbo].[SinhVien]([ten_Sinh_Vien] ,[tuoi]  ,[gioi_Tinh] ,[diem_Thi] ,[tinh] ,[nganh_Hoc]) VALUES ('" + item.Text + "'," + item.SubItems[1].Text + "," + item.SubItems[2].Text+ "," + item.SubItems[3].Text + "," + item.SubItems[4].Text + ",'" + item.SubItems[5].Text+"')";
+                    string s = "INSERT INTO [dbo].[SinhVien]([ten_Sinh_Vien] ,[tuoi]  ,[gioi_Tinh] ,[diem_Thi] ,[ma_Tinh] ,[ma_Nganh]) VALUES (N'" + item.Text + "'," + item.SubItems[1].Text + "," + item.SubItems[2].Text+ "," + item.SubItems[3].Text + "," + item.SubItems[4].Text + ",'" + item.SubItems[5].Text+"')";
                     SqlCommand sql = new SqlCommand(s,conn);
                     sql.ExecuteNonQuery();
                 }

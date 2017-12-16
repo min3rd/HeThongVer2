@@ -160,7 +160,7 @@ namespace HT4
                                                 "[y_Nghia][nvarchar](1000) NULL" +
                                                 ") ON[PRIMARY]", conn);
                 SqlCommand sql2 = new SqlCommand("CREATE TABLE [dbo].[SinhVien](" +
-                                                 "[id][int] IDENTITY(0, 1) NOT FOR REPLICATION NOT NULL, " +
+                                                 "[ma_SV][int] IDENTITY(0, 1) NOT FOR REPLICATION NOT NULL, " +
 
                                                  "[ten_Sinh_Vien][nvarchar](50) NOT NULL, " +
 
@@ -170,87 +170,87 @@ namespace HT4
 
    "[diem_Thi][real] NULL, " +
 
-   "[tinh][int] NULL, " +
+   "[ma_Tinh][int] NULL, " +
 
-    "[nganh_Hoc][varchar](20) NULL, " +
+    "[ma_Nganh][varchar](20) NULL, " +
  "CONSTRAINT[PK_SinhVien] PRIMARY KEY CLUSTERED" +
 "(" +
 
-    "[id] ASC" +
+    "[ma_SV] ASC" +
 ")WITH(PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON[PRIMARY]" +
 ") ON[PRIMARY]", conn);
                 SqlCommand sql3 = new SqlCommand("CREATE TABLE [dbo].[Tinh](" +
     "[ma_Tinh][int] NOT NULL, " +
 
-    "[ten_Tinh][varchar](50) NULL" +
+    "[ten_Tinh][nvarchar](50) NULL" +
     ") ON[PRIMARY]", conn);
                 SqlCommand sql4 = new SqlCommand("INSERT INTO [dbo].[Tinh]" +
                                                  "([ma_Tinh]" +
                                                  ",[ten_Tinh])" +
                                                  "VALUES" +
-                                                 "(1,'Ha Noi')," +
-                                                 "(2,'Ha Giang')," +
-                                                "(4,'Cao Bang')," +
-                                                "(6,'Bac Kan')," +
-                                                "(8,'Tuyen Quang')," +
-                                                "(10,'Lao Cai')," +
-                                                "(11,'Dien Bien')," +
-                                                "(12,'Lai Chau')," +
-                                                "(14,'Son La')," +
-                                                "(15,'Yen Bai')," +
-                                                "(17  ,'Hoa Binh')," +
-                                                "(19  ,'Thai Nguyen')," +
-                                                "(20  ,'Lang Son')," +
-                                                "(22  ,'Quang Ninh')," +
-                                                "(24  ,'Bac Giang')," +
-                                                "(25  ,'Phu Tho')," +
-                                                "(26  ,'Vinh Phuc')," +
-                                                "(27  ,'Bac Ninh')," +
-                                                "(30  ,'Hai Duong')," +
-                                                "(31  ,'Hai Phong')," +
-                                                "(33  ,'Hung Yen')," +
-                                                "(34  ,'Thai Binh')," +
-                                                "(35  ,'Ha Nam')," +
-                                                "(36  ,'Nam Dinh')," +
-                                                "(37  ,'Ninh Binh')," +
-                                                "(38  ,'Thanh Hoa')," +
-                                                "(40  ,'Nghe An')," +
-                                                "(42  ,'Ha Tinh')," +
-                                                "(44  ,'Quang Binh')," +
-                                                "(45  ,'Quang Tri')," +
-                                                "(46  ,'Hue')," +
-                                                "(48  ,'Da Nang')," +
-                                                "(49  ,'Quang Nam')," +
-                                                "(51  ,'Quang Ngai')," +
-                                                "(52  ,'Binh Dinh')," +
-                                                "(54  ,'Phu Yen')," +
-                                                "(56  ,'Khanh Hoa')," +
-                                                "(58  ,'Ninh Thuan')," +
-                                                "(60  ,'Binh Thuan')," +
-                                                "(62  ,'Kon Tum')," +
-                                                "(64  ,'Gia Lai')," +
-                                                "(66  ,'Dak Lak')," +
-                                                "(67  ,'Dak Nong')," +
-                                                "(68  ,'Lam Dong')," +
-                                                "(70  ,'Binh Phuoc')," +
-                                                "(72  ,'Tay Ninh')," +
-                                                "(74  ,'Binh Duong')," +
-                                                "(75  ,'Dong Nai')," +
-                                                "(77  ,'Ba Ria - Vung Tau')," +
-                                                "(79  ,'Ho CHi Minh')," +
-                                                "(80  ,'Long An')," +
-                                                "(82  ,'Tien Giang')," +
-                                                "(83  ,'Ben Tre')," +
-                                                "(84  ,'Tra Vinh')," +
-                                                "(86  ,'Vinh Long')," +
-                                                "(87  ,'Dong Thap')," +
-                                                "(89  ,'An Giang')," +
-                                                "(91  ,'Kien Giang')," +
-                                                "(92  ,'Can Tho')," +
-                                                "(93  ,'Hau Giang')," +
-                                                "(94  ,'Soc Trang')," +
-                                                "(95  ,'Bac Lieu')," +
-                                                "(96  ,'Ca Mau')", conn);
+                                                 "(1,N'Hà Nội')," +
+                                                 "(2,N'Hà Giang')," +
+                                                "(4,N'Cao Bằng')," +
+                                                "(6,N'Bắc Kạn')," +
+                                                "(8,N'Tuyên Quang')," +
+                                                "(10,N'Lào Cai')," +
+                                                "(11,N'Điện Biên')," +
+                                                "(12,N'Lai Châu')," +
+                                                "(14,N'Sơn La')," +
+                                                "(15,N'Yên Bái')," +
+                                                "(17  ,N'Hòa Bình')," +
+                                                "(19  ,N'Thái Nguyên')," +
+                                                "(20  ,N'Lạng Sơn')," +
+                                                "(22  ,N'Quảng Ninh')," +
+                                                "(24  ,N'Bắc Giang')," +
+                                                "(25  ,N'Phú Thọ')," +
+                                                "(26  ,N'Vĩnh Phúc')," +
+                                                "(27  ,N'Bắc Ninh')," +
+                                                "(30  ,N'Hải Dương')," +
+                                                "(31  ,N'Hải Phòng')," +
+                                                "(33  ,N'Hưng Yên')," +
+                                                "(34  ,N'Thái Bình')," +
+                                                "(35  ,N'Hà Nam')," +
+                                                "(36  ,N'Nam Định')," +
+                                                "(37  ,N'Ninh Bình')," +
+                                                "(38  ,N'Thanh Hóa')," +
+                                                "(40  ,N'Nghệ An')," +
+                                                "(42  ,N'Hà Tĩnh')," +
+                                                "(44  ,N'Quảng Bình')," +
+                                                "(45  ,N'Quảng Trị')," +
+                                                "(46  ,N'Huế')," +
+                                                "(48  ,N'Đà Nẵng')," +
+                                                "(49  ,N'Quảng Nam')," +
+                                                "(51  ,N'Quảng Ngãi')," +
+                                                "(52  ,N'Bình Định')," +
+                                                "(54  ,N'Phú Yên')," +
+                                                "(56  ,N'Khánh Hàa')," +
+                                                "(58  ,N'Ninh Thuận')," +
+                                                "(60  ,N'Bình Thuận')," +
+                                                "(62  ,N'Kon Tum')," +
+                                                "(64  ,N'Gia Lai')," +
+                                                "(66  ,N'Dak Lak')," +
+                                                "(67  ,N'Dak Nông')," +
+                                                "(68  ,N'Lâm Đồng')," +
+                                                "(70  ,N'Bình Phước')," +
+                                                "(72  ,N'Tây Ninh')," +
+                                                "(74  ,N'Bình Dương')," +
+                                                "(75  ,N'Đồng Nai')," +
+                                                "(77  ,N'Bà Rịa - Vũng Tàu')," +
+                                                "(79  ,N'Hồ Chi Minh')," +
+                                                "(80  ,N'Long An')," +
+                                                "(82  ,N'Tiền Giang')," +
+                                                "(83  ,N'Bến Tre')," +
+                                                "(84  ,N'Trà Vinh')," +
+                                                "(86  ,N'Vĩnh Long')," +
+                                                "(87  ,N'Đồng Tháp')," +
+                                                "(89  ,N'An Giang')," +
+                                                "(91  ,N'Kiên Giang')," +
+                                                "(92  ,N'Cần Thơ')," +
+                                                "(93  ,N'Hậu Giang')," +
+                                                "(94  ,N'Sóc Trang')," +
+                                                "(95  ,N'Bạc Liêu')," +
+                                                "(96  ,N'Cà Mau')", conn);
                 sql1.ExecuteNonQuery();
                 sql2.ExecuteNonQuery();
                 sql3.ExecuteNonQuery();
