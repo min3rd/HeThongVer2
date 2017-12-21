@@ -178,7 +178,7 @@ namespace HT4
             }
             else
             {
-                string s = "DELETE FROM [HT4].[dbo].[SinhVien] WHERE id = " + dataGridView1.Rows[dataGridView1.SelectedRows[0].Index].Cells[0].Value.ToString();
+                string s = "DELETE FROM [dbo].[SinhVien] WHERE ma_SV = " + dataGridView1.Rows[dataGridView1.SelectedRows[0].Index].Cells[0].Value.ToString();
                 try
                 {
                     SqlConnection conn = db.GetConnection();
